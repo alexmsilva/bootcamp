@@ -18,7 +18,7 @@ module.exports = {
         'indent': ['error', 4],
         'quotes': ['error', 'single'],
         'semi': ['error', 'always'],
-        'no-multiple-empty-lines': ['error', { 'max': 2, 'maxEOF': 1 }]
+        'no-multiple-empty-lines': ['error', { 'max': 2, 'maxEOF': 1 }],
         // 'class-methods-use-this': 'off',
         // 'no-param-reassign': 'off',
         // 'camelcase': 'off',
