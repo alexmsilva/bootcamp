@@ -7,7 +7,7 @@ import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
 
-routes.get('/', (req, res) => res.json({ message: 'Hello, Welcome to meetapp!' }));
+routes.get('/', (req, res) => res.json({ message: 'Hello, Welcome to Meetapp!' }));
 
 routes.post('/users', UserController.create);
 routes.post('/sessions', SessionController.create);
