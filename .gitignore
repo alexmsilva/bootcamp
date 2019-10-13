@@ -2,3 +2,5 @@ node_modules/
 gobarber/tmp/**
 gobarber/.env
 *.sqlite
+*.DS_Store
+modulo4/.DS_Store
