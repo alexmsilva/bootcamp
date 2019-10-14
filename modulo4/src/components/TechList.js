@@ -5,8 +5,21 @@ import TechItem from './TechItem';
 class TechList extends Component {
     state = {
         newTech: '',
-        techs: ['C', 'PHP', 'Java', 'Javascrip']
+        techs: []
     };
+
+    componentDidMount() {
+        const techs = localStorage.getItem('techs');
+        if (techs) {
+            this.setState({ techs: JSON.parse(techs) });
+        }
+    }
+
+    componentDidUpdate(_, prevState) {
+        if (prevState.techs !== this.state.techs) {
+            localStorage.setItem('techs', JSON.stringify(this.state.techs));
+        }
+    }
 
     hadleInputChange = e => this.setState({ newTech: e.target.value })
 
@@ -25,14 +38,10 @@ class TechList extends Component {
             <form onSubmit={this.handleSubmit}>
                 <ul>
                     {this.state.techs.map((tech, index) => (
-                        <TechItem key={index} tech={tech} onDelete={()=>this.handleDelete(tech)} />
+                        <TechItem key={index} tech={tech} onDelete={() => this.handleDelete(tech)} />
                     ))}
                 </ul>
-                <input
-                    type="text"
-                    onChange={this.hadleInputChange}
-                    value={this.state.newTech}
-                />
+                <input type="text" onChange={this.hadleInputChange} value={this.state.newTech} />
                 <button type="submit">Adicionar</button>
             </form>
         )
