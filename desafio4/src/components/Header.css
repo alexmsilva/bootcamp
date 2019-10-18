@@ -1,0 +1,29 @@
+#header {
+    background-color: green;
+    color: white;
+    height: 60px;
+    position: relative;
+}
+#header h1 {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    margin-top: -22px;
+}
+#header div.profile {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    margin-top: -18px;
+}
+#header div.profile div {
+    white-space: nowrap;
+    line-height: 35px;
+    margin-right: 10px;
+    float: left;
+}
+#header div.profile img {
+    display: inline-block;
+    height: 35px;
+}

@@ -1,7 +1,17 @@
 import React from 'react';
 
+import './App.css';
+
+import Header from './components/Header.js';
+import PostList from './components/PostList.js';
+
 function App() {
-    return <h1>Facebook</h1>
+    return (
+        <>
+            <Header />
+            <PostList />
+        </>
+    )
 }
 
 export default App;
