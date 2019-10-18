@@ -27,10 +27,10 @@ module.exports = {
   rules: {
     'comma-dangle': ['error', 'never'],
     'prettier/prettier': 'error',
-    'react/jsx-filename-extension': [
-      'warn',
-      { extensions: ['.jsx', '.js'] }
-    ],
+    // 'react/jsx-filename-extension': [
+    //   'warn',
+    //   { extensions: ['.jsx', '.js'] }
+    // ],
     'import/prefer-default-export': 'off'
   },
 };
