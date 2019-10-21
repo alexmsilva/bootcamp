@@ -10,7 +10,8 @@ class Main extends Component {
   state = {
     newRepo: '',
     repositories: [],
-    loading: false
+    loading: false,
+    error: false
   };
 
   // Loads localStorage data
@@ -29,36 +30,53 @@ class Main extends Component {
     }
   }
 
-  handleInputChange = e => this.setState({ newRepo: e.target.value })
+  handleInputChange = e => this.setState({ newRepo: e.target.value, error: false })
 
   handleSubmit = async e => {
     e.preventDefault();
 
-    this.setState({ loading: true });
+    this.setState({ loading: true, error: false });
 
-    const { newRepo, repositories } = this.state;
-    const response = await api.get(`repos/${newRepo}`);
+    try {
+      const { newRepo, repositories } = this.state;
 
-    const data = {
-      name: response.data.full_name
+      if (newRepo === '') {
+        throw new Error('Repositório vazio');
+      }
+
+      const hasRepo = repositories.find(r => r.name === newRepo);
+      if (hasRepo) {
+        throw new Error('Repositório duplicado');
+      }
+
+      const response = await api.get(`repos/${newRepo}`);
+
+      const data = {
+        name: response.data.full_name
+      }
+
+      this.setState({
+        newRepo: '',
+        repositories: [...repositories, data]
+      });
+
+    } catch (error) {
+      this.setState({ error: true });
+    } finally{
+      this.setState({ loading: false });
     }
-
-    this.setState({
-      newRepo: '',
-      repositories: [...repositories, data],
-      loading: false
-    });
   }
 
   render() {
-    const { newRepo, repositories, loading } = this.state;
+    const { newRepo, repositories, error, loading } = this.state;
+
     return (
       <Container>
         <h1>
           <FaGithubAlt />
           <span>Repositórios</span>
         </h1>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} error={error}>
           <input
             type="text"
             placeholder="Adicionar repositório"
